@@ -1,1 +1,1 @@
-database = {}
+import mysql.connector as sq
