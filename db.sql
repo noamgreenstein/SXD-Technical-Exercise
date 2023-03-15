@@ -12,6 +12,5 @@ CREATE TABLE `SXD` (
     `eq2_2` int(64),
     `eq2_3` int(64),
     `is_max` varchar(64),
-    PRIMARY KEY (`Z`)
 );
 
