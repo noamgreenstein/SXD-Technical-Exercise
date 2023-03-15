@@ -17,10 +17,10 @@ def solve_equation(constraints, is_max):
         else:
             z = min(constraints[0] * x1, constraints[0] * 0) + min(constraints[1] * x2,
                                                                    constraints[1] * 0)
-
         print([x1, x2, z])
+        return z
     else:
-        print("no solution")
+        raise Exception("invalid arguments")
 
 
-solve_equation([3, 4, 15, 10, 300, 2.5, 5, 110], True)
+# solve_equation([3, 4, 15, 10, 300, 2.5, 5, 110], True)
