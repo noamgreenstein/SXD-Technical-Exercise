@@ -1,4 +1,4 @@
-CREATE DATABASE test;
+USE exercise;
 
 
 CREATE TABLE `SXD` (
