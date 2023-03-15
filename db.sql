@@ -1,6 +1,6 @@
 USE exercise;
 
-
+# table with all the needed info
 CREATE TABLE `SXD` (
     `Z` FLOAT,
     `coefficient1` int(64),
