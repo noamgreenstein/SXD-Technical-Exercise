@@ -3,14 +3,14 @@ USE exercise;
 # table with all the needed info
 CREATE TABLE `SXD` (
     `Z` FLOAT,
-    `coefficient1` int(64),
-    `coefficient2` int(64),
-    `eq1_1` int(64),
-    `eq1_2` int(64),
-    `eq1_3` int(64),
-    `eq2_1` int(64),
-    `eq2_2` int(64),
-    `eq2_3` int(64),
+    `coefficient1` FLOAT,
+    `coefficient2` FLOAT,
+    `eq1_1` FLOAT,
+    `eq1_2` FLOAT,
+    `eq1_3` FLOAT,
+    `eq2_1` FLOAT,
+    `eq2_2` FLOAT,
+    `eq2_3` FLOAT,
     `is_max` varchar(64)
 );
 
