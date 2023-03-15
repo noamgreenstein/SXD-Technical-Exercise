@@ -30,21 +30,15 @@ def main():
         coeffs = input("invalid arguments please re-enter")
         coeffs = coeffs.split(" ")
 
+    # convert the coefficients into floats
+    for i in range(len(coeffs)):
+        coeffs[i] = float(coeffs[i])
+
     # make user specify the coefficients for the first inequality
-    # program won't continue if input is invalid
-    eq1 = input("please enter the numbers for the first inequality ")
-    eq1 = eq1.split(" ")
-    while len(eq1) != 3 or is_valid_eq(eq1):
-        eq1 = input("invalid arguments please re-enter ")
-        eq1 = eq1.split(" ")
+    eq1 = get_eq("first")
 
     # make user specify the coefficients for the second inequality
-    # program won't continue if input is invalid
-    eq2 = input("please enter the numbers for the second inequality ")
-    eq2 = eq2.split(" ")
-    while len(eq1) != 3 or is_valid_eq(eq2):
-        eq2 = input("invalid arguments please re-enter ")
-        eq2 = eq2.split(" ")
+    eq2 = get_eq("second")
 
     # creating the query to attempt to select the entered values from the table in the database
     select_qry = 'SELECT * FROM SXD WHERE coefficient1 = %s AND coefficient2 = %s ' \
@@ -54,8 +48,8 @@ def main():
 
     # attempting to select the entered values from the table in the database
     cursor.execute(select_qry,
-                   (float(coeffs[0]), float(coeffs[1]), float(eq1[0]), float(eq1[1]), float(eq1[2]),
-                    float(eq2[0]), float(eq2[1]), float(eq2[2]), min_or_max))
+                   (coeffs[0], coeffs[1], eq1[0], eq1[1], eq1[2],
+                    eq2[0], eq2[1], eq2[2], min_or_max))
 
     # Check if any rows were returned
     row = cursor.fetchone()
@@ -67,9 +61,7 @@ def main():
         # if it does not exist in the database calculate the answer and display it to the user
         is_max = True if min_or_max.lower() == "max" else False
         z = Part2.solve_equation(
-            [float(coeffs[0]), float(coeffs[1]), float(eq1[0]), float(eq1[1]), float(eq1[2]),
-             float(eq2[0]), float(eq2[1]), float(eq2[2])],
-            bool(is_max))
+            [coeffs[0], coeffs[1], eq1[0], eq1[1], eq1[2], eq2[0], eq2[1], eq2[2]], bool(is_max))
         print(z)
 
         # define the query to enter the values into the table
@@ -78,9 +70,8 @@ def main():
                      "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
         # execute the insert query
-        cursor.execute(insert_qry, (float(z), float(coeffs[0]), float(coeffs[1]), float(eq1[0]),
-                                    float(eq1[1]), float(eq1[2]),
-                                    float(eq2[0]), float(eq2[1]), float(eq2[2]), min_or_max))
+        cursor.execute(insert_qry, (float(z), coeffs[0], coeffs[1], eq1[0], eq1[1], eq1[2],
+                                    eq2[0], eq2[1], eq2[2], min_or_max))
 
         # commit the changes to the database
         db.commit()
@@ -100,6 +91,23 @@ def is_number(num):
 # helper to check if the user entered three valid numbers
 def is_valid_eq(eq):
     return not (is_number(eq[0]) and is_number(eq[1]) and is_number(eq[2]))
+
+
+# make user specify the coefficients for a given inequality
+# program won't continue if input is invalid
+def get_eq(fos):
+    eq = input(f"please enter the numbers for the {fos} inequality ")
+    eq = eq.split(" ")
+
+    while len(eq) != 3 or is_valid_eq(eq):
+        eq = input("invalid arguments please re-enter ")
+        eq = eq.split(" ")
+
+    # convert the coefficients into floats
+    for j in range(len(eq)):
+        eq[j] = float(eq[j])
+
+    return eq
 
 
 if __name__ == "__main__":
