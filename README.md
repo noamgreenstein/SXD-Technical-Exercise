@@ -10,7 +10,8 @@ See Part2.py <br/> <br/>
 **Part 3: Systems** <br/>
 See Part2.py, Part3.py, & db.sql <br/> <br/>
 What type of database would you choose? Why? <br/>
-&nbsp; I chose a relational database (mySQL) because it provides strong data integrity features and can handle sub-millisecond latency <br/>
-Assume your target user audience are all math students in the US. How would you size
-your database accordingly? What strategies would you consider to prevent overloading a
-single database instance with requests? <br/>
+&nbsp;&nbsp;&nbsp;I chose a relational database (mySQL) because it provides strong data integrity features and can handle sub-millisecond latency. <br/><br/>
+Assume your target user audience are all math students in the US. How would you size your database accordingly? What strategies would you consider to prevent overloading a single database instance with requests? <br/>
+&nbsp;&nbsp;&nbsp;Since there is a large amount of math students in the US, the database should be large enough to handle a significant amount of users. To prevent overloading a single database instance with requests you could replicate the databse multiple times. <br/> <br/>
+Did you set up your database locally or on cloud infrastructure? <br/>
+&nbsp;&nbsp;&nbsp;I set up my database locally however it is hosted through docker. 
