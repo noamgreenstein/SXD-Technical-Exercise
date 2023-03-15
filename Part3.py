@@ -58,7 +58,8 @@ def main():
     # Check if any rows were returned
     row = cursor.fetchone()
     if row is not None:
-        # if it exists display the value
+        # if it exists let the user know and print the value
+        print("already computed")
         print(row[0])
     else:
         # if it does not exist in the database calculate the answer and display it to the user
